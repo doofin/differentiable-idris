@@ -1,6 +1,8 @@
 # tensorflow-idris,why?
 a chance to learn dependent types together with deep learning
 
+elab reflection ,the maybe most advanced macro system , may make our great functional code very terse
+
 
 # how to
 haskell example:
