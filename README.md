@@ -4,6 +4,9 @@ a chance to learn dependent types together with deep learning
 
 # how to
 haskell example:
+
+https://github.com/tensorflow/haskell/blob/master/tensorflow/src/TensorFlow/Internal/Raw.chs
+
 https://github.com/tensorflow/haskell
 
 https://github.com/helq/tensorflow-haskell-deptyped
