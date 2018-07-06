@@ -3,7 +3,16 @@ a chance to learn dependent types together with deep learning
 
 elab reflection ,the maybe most advanced macro system , may make our great functional code very terse
 
+# pre
+verify tf c lib is installed
+```
+ls /usr/lib | grep tenso
 
+should give sth like:
+libtensorflow_framework.so
+libtensorflow.so
+
+```
 # how to
 haskell example:
 
