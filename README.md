@@ -11,6 +11,9 @@ Utilize existing efforts on optimizations for deep leanring,rather than a whole 
 idris tf_ffi.idr -o idr
 ./idr
 ```
+
+which should output your installed tf version
+
 # Overview
 construct idris computation graph with free monad approach,transform it and send to tf c api
 
@@ -38,6 +41,9 @@ idris ffi:
 http://docs.idris-lang.org/en/latest/tutorial/miscellany.html
 
 http://docs.idris-lang.org/en/latest/reference/ffi.html
+
+idris elab refl:
+http://www.davidchristiansen.dk/david-christiansen-phd.pdf
 
 tf c api:
 
