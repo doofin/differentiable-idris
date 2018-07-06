@@ -1,7 +1,10 @@
-# tensorflow-idris,why?
-a chance to learn dependent types together with deep learning
+# tensorflow on idris,why?
 
-elab reflection ,the maybe most advanced macro system , may make our great functional code very terse
+a chance to learn dependent types with deep learning
+
+elaborator reflection,maybe the most advanced macro system ,will make our great statically typed functional code terse and beautiful
+
+Utilize existing efforts on optimizations for deep leanring,rather than a whole new framework,and tensorflow is the most popular one.However,python is really not my love
 
 # pre
 verify tf c lib is installed
