@@ -19,7 +19,7 @@ libtensorflow_framework.so
 libtensorflow.so
 
 ```
-# how to
+# How to
 haskell example:
 
 https://github.com/tensorflow/haskell/blob/master/tensorflow/src/TensorFlow/Internal/Raw.chs
@@ -38,8 +38,16 @@ https://www.tensorflow.org/install/install_c
 
 2.implement tf ops api with free monad 
 
+3.write your own computational graph
+
+4.train and predict
+
 # Looking forward for your to join!
 
-more relevent info about idris ffi
+more about idris ffi
 
 tf architecture
+
+elaborator reflection
+
+any ideas!
