@@ -1,2 +1,4 @@
 *.ibc
 *.o
+tfapi.c
+idr
