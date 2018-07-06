@@ -6,6 +6,9 @@ elaborator reflection,maybe the most advanced macro system ,will make our great 
 
 Utilize existing efforts on optimizations for deep leanring,rather than a whole new framework,and tensorflow is the most popular one.However,python is really not my love
 
+# Overview
+construct idris computation graph with free monad approach,transform it and send to tf c api
+
 # pre
 verify tf c lib is installed
 ```
@@ -30,4 +33,13 @@ https://www.tensorflow.org/install/install_c
 
 (which says: `TensorFlow provides a C API defined in c_api.h, which is suitable for building bindings for other languages. The API leans towards simplicity and uniformity rather than convenience.` )
 
+# Road map
+1.get idris tf ffi to work
+
+2.implement tf ops api with free monad 
+
 # Looking forward for your to join!
+
+more relevent info about idris ffi
+
+tf architecture
