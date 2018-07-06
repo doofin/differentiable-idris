@@ -43,7 +43,10 @@ http://docs.idris-lang.org/en/latest/tutorial/miscellany.html
 http://docs.idris-lang.org/en/latest/reference/ffi.html
 
 idris elab refl:
+
 http://www.davidchristiansen.dk/david-christiansen-phd.pdf
+
+http://www.davidchristiansen.dk/pubs/type-directed-elaboration-of-quasiquotations.pdf
 
 tf c api:
 
