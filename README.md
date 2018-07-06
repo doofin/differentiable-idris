@@ -6,6 +6,11 @@ elaborator reflection,maybe the most advanced macro system ,will make our great 
 
 Utilize existing efforts on optimizations for deep leanring,rather than a whole new framework,and tensorflow is the most popular one.However,python is really not my love
 
+# Run
+```
+idris tf_ffi.idr -o idr
+./idr
+```
 # Overview
 construct idris computation graph with free monad approach,transform it and send to tf c api
 
