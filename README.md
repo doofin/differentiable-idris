@@ -24,7 +24,7 @@ libtensorflow_framework.so
 libtensorflow.so
 
 ```
-# How to
+# Info
 haskell example:
 
 https://github.com/tensorflow/haskell/blob/master/tensorflow/src/TensorFlow/Internal/Raw.chs
@@ -33,13 +33,21 @@ https://github.com/tensorflow/haskell
 
 https://github.com/helq/tensorflow-haskell-deptyped
 
-use idris c ffi to link to tf:
+idris ffi:
+
+http://docs.idris-lang.org/en/latest/tutorial/miscellany.html
+
+http://docs.idris-lang.org/en/latest/reference/ffi.html
+
+tf c api:
+
 https://www.tensorflow.org/install/install_c
 
-(which says: `TensorFlow provides a C API defined in c_api.h, which is suitable for building bindings for other languages. The API leans towards simplicity and uniformity rather than convenience.` )
+ `TensorFlow provides a C API defined in c_api.h, which is suitable for building bindings for other languages. The API leans towards simplicity and uniformity rather than convenience.`
 
 # Road map
-1.get idris tf ffi to work
+
+1.get idris tf ffi to work (ok)
 
 2.implement tf ops api with free monad 
 
@@ -50,6 +58,8 @@ https://www.tensorflow.org/install/install_c
 # Looking forward for your to join!
 
 more about idris ffi
+
+a free/freer/algebraic effects computation graph api
 
 tf architecture
 
