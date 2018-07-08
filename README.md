@@ -17,6 +17,12 @@ which should output your installed tf version
 # Overview
 construct idris computation graph with free monad approach,transform it and send to tf c api
 
+Elabs.idr : macros
+
+UserApi : user level graph construction and ops
+
+Ffi : tf ffi bindings
+
 # pre
 verify tf c lib is installed
 ```
