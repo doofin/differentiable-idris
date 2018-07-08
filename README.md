@@ -1,10 +1,21 @@
 # tensorflow on idris,why?
 
-a chance to learn dependent types with deep learning
+Learn & Research dependent types with deep learning
 
-elaborator reflection,maybe the most advanced macro system ,will make our great statically typed functional code terse and beautiful
+Elaborator reflection,maybe the most advanced macro system ,will make our great statically typed functional code terse and beautiful
 
-Utilize existing efforts on optimizations for deep leanring,rather than a whole new framework,and tensorflow is the most popular one.However,python is really not my love
+Utilize existing efforts on optimizations for deep learning,rather than a whole new framework
+
+# pre
+verify tf c lib is installed
+```
+ls /usr/lib | grep tenso
+
+should give sth like:
+libtensorflow_framework.so
+libtensorflow.so
+
+```
 
 # Run
 ```
@@ -23,16 +34,6 @@ UserApi : user level graph construction and ops
 
 Ffi : tf ffi bindings
 
-# pre
-verify tf c lib is installed
-```
-ls /usr/lib | grep tenso
-
-should give sth like:
-libtensorflow_framework.so
-libtensorflow.so
-
-```
 # Info
 haskell example:
 
@@ -56,6 +57,8 @@ http://www.davidchristiansen.dk/pubs/type-directed-elaboration-of-quasiquotation
 
 tf c api:
 
+https://stackoverflow.com/questions/44378764/hello-tensorflow-using-the-c-api
+
 https://www.tensorflow.org/install/install_c
 
  `TensorFlow provides a C API defined in c_api.h, which is suitable for building bindings for other languages. The API leans towards simplicity and uniformity rather than convenience.`
@@ -73,6 +76,8 @@ https://www.tensorflow.org/install/install_c
 # Looking forward for your to join!
 
 more about idris ffi
+
+tf c api usage
 
 a free/freer/algebraic effects computation graph api
 
