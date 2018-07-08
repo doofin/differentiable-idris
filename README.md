@@ -8,7 +8,7 @@ Utilize existing efforts on optimizations for deep leanring,rather than a whole 
 
 # Run
 ```
-idris tf_ffi.idr -o idr
+idris Ffi.idr -o idr
 ./idr
 ```
 
