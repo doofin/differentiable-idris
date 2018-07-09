@@ -19,6 +19,9 @@ TF_Status = Ptr -- attention!
 tfNewStatus : IO TF_Status
 tfNewStatus = foreign FFI_C "TF_NewStatus" (IO TF_Status) 
 
+tfGetCode : TF_Status ->IO Int
+tfGetCode = foreign FFI_C "TF_Code" (TF_Status ->IO Int) 
+
 tfVersion : IO String
 tfVersion = foreign FFI_C "TF_Version" (IO String) 
 
@@ -26,4 +29,6 @@ main : IO ()
 main = do 
      x<-tfVersion
      s<-tfNewStatus
+     c<-tfGetCode s
+--     print c
      putStrLn x
