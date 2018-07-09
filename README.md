@@ -78,6 +78,8 @@ https://stackoverflow.com/questions/44378764/hello-tensorflow-using-the-c-api
 
 https://www.tensorflow.org/install/install_c
 
+https://www.tensorflow.org/extend/language_bindings
+
  `TensorFlow provides a C API defined in c_api.h, which is suitable for building bindings for other languages. The API leans towards simplicity and uniformity rather than convenience.`
 
 # Road map
