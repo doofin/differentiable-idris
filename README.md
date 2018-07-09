@@ -1,4 +1,4 @@
-# tensorflow on idris,why?
+# tensorflow on idris,why? (WIP!)
 
 Learn & Research dependent types with deep learning
 
