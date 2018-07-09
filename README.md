@@ -26,15 +26,26 @@ idris Ffi.idr -o idr
 which should output your installed tf version
 
 # Overview
-construct idris computation graph with free monad approach,transform it and send to tf c api
+Construct idris computation graph with free monad approach,transform it and send to tf c api
+
+c_api.h is the tf low level api,we can get `operations` or `op` , for exmaple,matmul,placeholders,variables,etc,with TF_newOperation . Unfortunately,there is not a type-safe list for operations. 
+
+At high level, User defined computation graph would be optimised and then transformed to tf graph.
 
 Elabs.idr : macros
 
 UserApi : user level graph construction and ops
 
-Ffi : tf ffi bindings
+Ffi : tf ffi bindings , link to /usr/include/tensorflow/c/c_api.h
+
+Midlevel : anything else between userapi and FFi
 
 # Info
+Free monad:
+https://github.com/idris-hackers/idris-free
+
+https://towardsdatascience.com/gradient-descend-with-free-monads-ebf9a23bece5
+
 haskell example:
 
 https://github.com/tensorflow/haskell/blob/master/tensorflow/src/TensorFlow/Internal/Raw.chs
