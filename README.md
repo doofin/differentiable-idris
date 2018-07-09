@@ -66,6 +66,10 @@ http://docs.idris-lang.org/en/latest/tutorial/miscellany.html
 
 http://docs.idris-lang.org/en/latest/reference/ffi.html
 
+https://github.com/idris-lang/Idris-dev/blob/8b6f86e4291b8978c5e01a2dfd387ce695c5ff85/libs/base/Data/IORef.idr
+
+https://github.com/idris-lang/Idris-dev/blob/24f580d45455b3fee35d0e96e48415612e58aaed/libs/prelude/IO.idr
+
 idris elab refl:
 
 http://www.davidchristiansen.dk/david-christiansen-phd.pdf
