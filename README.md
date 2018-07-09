@@ -17,6 +17,12 @@ libtensorflow.so
 
 ```
 
+install idris-free package with freer
+
+https://github.com/clayrat/idris-free (not merged yet)
+
+then idris-emacs mode will load fine (you can look at .ipkg file)
+
 # Run
 ```
 idris Ffi.idr -o idr
@@ -34,7 +40,7 @@ At high level, User defined computation graph would be optimised and then transf
 
 Elabs.idr : macros
 
-UserApi : user level graph construction and ops
+UserApi : user level graph construction and ops ,with freer
 
 Ffi : tf ffi bindings , link to /usr/include/tensorflow/c/c_api.h
 
