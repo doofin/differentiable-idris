@@ -2,6 +2,8 @@ module UserApi
 
 import Control.Monad.Freer
 
+%access public export
+
 data Tensor -- temporary
 data Shape
 

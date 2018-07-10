@@ -77,6 +77,8 @@ http://www.davidchristiansen.dk/david-christiansen-phd.pdf
 
 http://www.davidchristiansen.dk/pubs/type-directed-elaboration-of-quasiquotations.pdf
 
+http://cattheory.com/editTimeTacticsDraft.pdf
+
 tf c api usage:
 
 https://stackoverflow.com/questions/44378764/hello-tensorflow-using-the-c-api
