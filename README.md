@@ -1,23 +1,23 @@
 # tensorflow on idris,why? (WIP!)
-
 Learn & Research dependent types with deep learning
 
 Elaborator reflection,maybe the most advanced macro system ,will make our great statically typed functional code terse and beautiful
 
 Utilize existing efforts on optimizations for deep learning,rather than a whole new framework
 
-# pre
-verify tf c lib is installed
+# Prepare
+1.verify tf c lib is installed
 ```
 ls /usr/lib | grep tenso
 
 should give sth like:
+
 libtensorflow_framework.so
 libtensorflow.so
 
 ```
 
-install idris-free package with freer
+2.install idris-free package with freer
 
 https://github.com/clayrat/idris-free (not merged yet)
 
@@ -34,17 +34,18 @@ which should output your installed tf version
 # Overview
 Construct idris computation graph with free monad approach,transform it and send to tf c api
 
-c_api.h is the tf low level api,we can get `operations` or `op` , for exmaple,matmul,placeholders,variables,etc,with TF_newOperation . Unfortunately,there is not a type-safe list for operations. 
+c_api.h is the tf low level api,we can get `operations` or `op` , for exmaple,matmul,placeholders,variables,etc,with TF_newOperation . Unfortunately,there is not a type-safe list for such operations. 
 
 At high level, User defined computation graph would be optimised and then transformed to tf graph.
 
+project files:
+
+```
 Elabs.idr : macros
-
-UserApi : user level graph construction and ops ,with freer
-
+UserApi : user level graph construction and ops ,with freer monad
 Ffi : tf ffi bindings , link to /usr/include/tensorflow/c/c_api.h
-
 Midlevel : anything else between userapi and FFi
+```
 
 # Info
 Free monad:
@@ -76,7 +77,7 @@ http://www.davidchristiansen.dk/david-christiansen-phd.pdf
 
 http://www.davidchristiansen.dk/pubs/type-directed-elaboration-of-quasiquotations.pdf
 
-tf c api:
+tf c api usage:
 
 https://stackoverflow.com/questions/44378764/hello-tensorflow-using-the-c-api
 
@@ -84,7 +85,13 @@ https://www.tensorflow.org/install/install_c
 
 https://www.tensorflow.org/extend/language_bindings
 
- `TensorFlow provides a C API defined in c_api.h, which is suitable for building bindings for other languages. The API leans towards simplicity and uniformity rather than convenience.`
+`TensorFlow has many ops, and the list is not static, so we recommend generating the functions for adding ops to a graph instead of writing them by individually by hand (though writing a few by hand is a good way to figure out what the generator should generate)`
+
+https://github.com/tensorflow/tensorflow/blob/r1.8/tensorflow/core/ops/ops.pbtxt
+
+https://www.tensorflow.org/api_docs/python/tf/Operation
+
+`An Operation is a node in a TensorFlow Graph that takes zero or more Tensor objects as input, and produces zero or more Tensor objects as output. Objects of type Operation are created by calling a Python op constructor (such as tf.matmul) or tf.Graph.create_op.`
 
 # Road map
 

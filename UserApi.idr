@@ -2,19 +2,22 @@ module UserApi
 
 import Control.Monad.Freer
 
-
 data Tensor -- temporary
+data Shape
 
-data Edge : Type where
-     Placeholder : Edge
-     Constant : Tensor -> Edge
+data GraphData : (a : Type) -> Type where 
+  Mul : Tensor -> Tensor -> GraphData Tensor
+  Placeholder : GraphData Tensor
+  Constant : Shape -> GraphData Tensor
 
-data Pgraph : (a : Type) -> Type where 
-     Matmul : Edge -> Edge -> Pgraph Edge
---     Sum : Edge -> Edge -> Pgraph
+FreeGraph : Type --type of computation graph ,freer graph
+FreeGraph = Freer GraphData Tensor
 
-Cgraph : Type --type of computation graph 
-Cgraph = Freer Pgraph Edge
+newPlaceholder : FreeGraph
+newPlaceholder = liftF Placeholder
 
-matmul : Edge -> Edge -> Cgraph
-matmul e1 e2 = liftF (Matmul e1 e2)
+exampleGraph : FreeGraph
+exampleGraph = do 
+  t<-newPlaceholder
+  a<-liftF Placeholder -- same
+  liftF (Mul t a)
