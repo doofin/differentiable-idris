@@ -53,13 +53,17 @@ https://github.com/idris-hackers/idris-free
 
 https://towardsdatascience.com/gradient-descend-with-free-monads-ebf9a23bece5
 
-haskell example:
+https://typelevel.org/cats/datatypes/freemonad.html
+
+haskell and scala example:
 
 https://github.com/tensorflow/haskell/blob/master/tensorflow/src/TensorFlow/Internal/Raw.chs
 
 https://github.com/tensorflow/haskell
 
 https://github.com/helq/tensorflow-haskell-deptyped
+
+https://github.com/eaplatanios/tensorflow_scala
 
 idris ffi:
 

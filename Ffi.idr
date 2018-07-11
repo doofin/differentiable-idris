@@ -7,7 +7,8 @@ module Main
 
 -- data TF_Tensor
 -- IO (Raw TF_Tensor) works,but c warns assignment from incompatible pointer type
--- data TF_Status
+data TF_Status2:(a:Type)->Type where --safer way
+  TF_Status22:TF_Status2 Ptr
 
 TF_Status : Type
 TF_Status = Ptr -- attention!

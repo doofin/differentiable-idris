@@ -4,6 +4,7 @@ import Control.Monad.Freer
 
 %access public export
 
+
 data TFops : Type where
   Placeholder : String->TFops
   
