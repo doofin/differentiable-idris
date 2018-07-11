@@ -1,4 +1,4 @@
-package tensorflow_idris
+package tensorflow-idris
 modules = UserApi
 -- sourcedir = src
 opts = "-p idris_free"
