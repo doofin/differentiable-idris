@@ -2,4 +2,4 @@ package tensorflow-idris
 
 modules = UserApi,Ffi,Midlevel
 
-opts = "-p idris-free"
+opts = "-p idris-free -p derive"
