@@ -1,4 +1,5 @@
 package tensorflow-idris
-modules = UserApi
--- sourcedir = src
+
+modules = UserApi,Ffi,Midlevel
+
 opts = "-p idris-free"
