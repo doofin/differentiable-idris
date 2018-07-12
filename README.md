@@ -10,7 +10,7 @@ Utilize existing efforts on optimizations for deep learning,rather than a whole 
 # Prepare
 1.verify tf c lib is installed
 ```
-ls /usr/lib | grep tenso
+ls /usr/lib | grep tensor
 
 should give sth like:
 
@@ -21,9 +21,11 @@ libtensorflow.so
 
 2.install idris-free package with freer
 
-https://github.com/clayrat/idris-free (not merged yet)
+https://github.com/idris-industry/idris-free (not merged yet)
 
-then idris-emacs mode will load fine (you can look at .ipkg file)
+then idris-emacs mode will load fine (you can take a look at .ipkg file)
+
+warning! idris-free is also under active development,please check dependencies are the newest!
 
 # Run
 ```

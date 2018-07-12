@@ -1,26 +1,33 @@
 module UserApi
 
 import Control.Monad.Freer
+import Debug.Trace
+import Control.Monad.Id
 
 %access public export
--- %default total
+%default total
 
-data Id : Type where
-  IdF : (a:Type)->Id
-  
 data Tensor : Type where
   NumT : Int -> Tensor
   DoubleT : Double -> Tensor
+
+implementation Show Tensor where
+  show (NumT i) = show i
+  show (DoubleT x) = show x
+  
 -- temporary
 data Shape
 
-data GraphData : (a : Type) -> Type where 
+data GraphData : Type -> Type where 
   Mul : Tensor -> Tensor -> GraphData Tensor
   Placeholder : GraphData Tensor
   Constant : Int -> GraphData Tensor
 
 FreeGraph : Type --type of computation graph ,freer graph
 FreeGraph = Freer GraphData Tensor
+
+implicit gt2fg : GraphData Tensor -> FreeGraph
+gt2fg = liftF
 
 newPlaceholder : FreeGraph
 newPlaceholder = liftF Placeholder
@@ -29,49 +36,36 @@ exampleGraph : FreeGraph
 exampleGraph = do 
   t<-newPlaceholder
   a<-liftF Placeholder -- same
+  b<-Placeholder -- same
   liftF (Mul t a)
 
 const1 : GraphData Tensor
 const1 = Constant 1
 
-addG : FreeGraph
-addG = do
-  x<-liftF $ const1
-  y<-liftF $ Constant 2
+mulG : FreeGraph
+mulG = do
+  x<-liftF $ Constant 1
+  y<-liftF $ Constant 3
   liftF $ Mul x y
 
-runIO : {x : Type}-> GraphData x -> IO x
-runIO (Mul (NumT x) (NumT y)) = do 
-  let res=x*y
-  print $ "Mul x y is " ++ (show res)
-  pure (NumT res)
-  
-runIO Placeholder = do
-  print "Placeholder"
-  pure (NumT 0)
-  
-runIO (Constant x) = do
-  print $ "Constant " ++ (show x)
-  pure (NumT x)
-  
--- runIO xx =  pure (NumT 1)
+numericGradId : {x : Type}->  GraphData Tensor->GraphData x -> Id x
+numericGradId (Mul z w) (Mul x y) =  pure $ DoubleT 1.0
+numericGradId Placeholder (Mul x y) =  pure $ DoubleT  2.0
+numericGradId (Constant z) (Mul (NumT x) (NumT y)) =  
+  let res : Double =((cast $ x*y) + 0.1)/((cast z)+0.1) in
+  pure $ trace (show z ++ "," ++show x) $ DoubleT res
+numericGradId _ (Constant x) = pure $ DoubleT 3.0
+numericGradId _ Placeholder = pure $ DoubleT 4.0
+numericGradId (Constant x) (Mul (NumT y) (DoubleT z)) =  pure $ DoubleT 5.0
+numericGradId (Constant x) (Mul (DoubleT y) (NumT z)) =  pure $ DoubleT 6.0
+numericGradId (Constant z) (Mul (DoubleT x) (DoubleT y)) = 
+  let res : Double =(x*y + 0.1)/((cast z)+0.1) in
+--  pure $ trace (show z ++ "," ++show x) $ DoubleT res
+    pure  $ DoubleT res
 
-numericGrad : {x : Type}->  GraphData Tensor->GraphData x -> IO x
-numericGrad (Constant x) (Mul (NumT y) (NumT z)) = do 
-  print "sadfsdf"
-  -- let res : Double =((cast $ y*z) + 0.01)/((cast x)+0.01)
-  pure $ DoubleT 1.0
--- numericGrad _ _ =     pure $ DoubleT 1.0
-
-interp : FreeGraph -> IO Tensor
-interp   = foldFreer runIO
-
-
-main : IO ()
-main = interp addG >>= \_ => pure ()
-
-mainGrad : IO ()
-mainGrad = do 
-  x <- (foldFreer (numericGrad const1) addG) 
+mainGradId : Id String
+mainGradId = do 
+  x <- (foldFreer ((trace "xxx" numericGradId) const1) mulG) 
   --print x
-  pure ()
+  pure $ show x
+
