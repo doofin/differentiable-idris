@@ -1,4 +1,4 @@
-module UserApi
+module Main
 
 import Control.Monad.Freer
 
@@ -67,11 +67,14 @@ interp : FreeGraph -> IO Tensor
 interp   = foldFreer runIO
 
 
-main : IO ()
-main = interp addG >>= \_ => pure ()
 
 mainGrad : IO ()
 mainGrad = do 
   x <- (foldFreer (numericGrad const1) addG) 
   --print x
   pure ()
+
+main : IO ()
+main = mainGrad
+
+-- main = interp addG >>= \_ => pure ()
