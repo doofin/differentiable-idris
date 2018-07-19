@@ -23,6 +23,8 @@ libtensorflow.so
 
 https://github.com/idris-industry/idris-free (not merged yet)
 
+and https://github.com/idris-industry/derive
+
 then idris-emacs mode will load fine (you can take a look at .ipkg file)
 
 warning! idris-free is also under active development,please check dependencies are the newest!
