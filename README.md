@@ -73,6 +73,8 @@ https://github.com/eaplatanios/tensorflow_scala
 
 idris ffi:
 
+bind to c struct ! : https://github.com/idris-lang/Idris-dev/tree/master/libs/contrib/CFFI
+
 http://docs.idris-lang.org/en/latest/tutorial/miscellany.html
 
 http://docs.idris-lang.org/en/latest/reference/ffi.html
