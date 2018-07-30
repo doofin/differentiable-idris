@@ -7,6 +7,19 @@ Elaborator reflection,maybe the most advanced macro system ,will make our great 
 
 Utilize existing efforts on optimizations for deep learning,rather than a whole new framework
 
+syntax,api : ```
+depGraph2 : FreeGraphD $ (TensorD [1],TensorD [2])
+depGraph2 = do
+  in1<-liftF $ PlaceholderD [1]
+  out1<-liftF $ PlaceholderD [2]
+  out2<-PlaceholderD [2] -- using implicits
+  pure (in1,out1)
+
+compGraphD : FreeGraphD $ TensorD [1]
+compGraphD = do
+  (in1,out1)<-depGraph2
+  pure in1
+```idris
 # Prepare
 1.verify tf c lib is installed
 ```
