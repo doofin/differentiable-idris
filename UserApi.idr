@@ -4,10 +4,11 @@ import Control.Monad.Freer
 import Debug.Trace
 import Control.Monad.Id
 import Data.Fin
+import Control.Monad.State
 
 %access public export
 %default total
-
+||| currently,some explorations on building computational graphs.
 -- non dependent version,for testing only.see below for dependent version
 data Tensor : Type where
   DoubleT : Double -> Tensor
@@ -67,26 +68,24 @@ data TensorD : List Nat -> Type where
   MkTensorD : TensorD xs
 
 data GraphDataD : Type -> Type where 
-  MulD : TensorD s -> TensorD s -> GraphDataD $ TensorD $ s ++ [1]
+  InD : (s : List Nat) -> GraphDataD $ TensorD s -- graph input,like Placeholder
+  OutD : (s : List Nat) -> GraphDataD $ TensorD s -- graph output
+  TrainableD : (s : List Nat) -> GraphDataD $ TensorD s -- variable in tf
+  MulD : TensorD s -> TensorD s -> GraphDataD $ TensorD s
   VecMulD : TensorD [v] -> TensorD [v,_] -> GraphDataD $ TensorD [v] -- vec `mul` matrix ,safely
-  PlaceholderD : (s : List Nat) -> GraphDataD $ TensorD s -- new graph input
-  MapD : TensorD x -> (TensorD x->TensorD x)->GraphDataD $ TensorD x
-  
+  MapD : TensorD x -> (TensorD x->TensorD x)->GraphDataD $ TensorD x -- for efficiency,pass map to tf c lib  
 
-tRank : TensorD x -> Nat
-tRank {x=s} _ = length s
+tensorRank : TensorD x -> Nat
+tensorRank {x=s} _ = length s
 
-p1 : GraphDataD $ TensorD [1]
-p1 = PlaceholderD [1]
+tensor1 : TensorD [1,2,3]
+tensor1 = MkTensorD
 
-depTs1 : TensorD [1,2,3]
-depTs1 = MkTensorD
+tensorShape1 : TensorD a -> List Nat
+tensorShape1 {a=zz} MkTensorD = zz
 
-computeDepT : TensorD a -> List Nat
-computeDepT {a=zz} MkTensorD = zz
-
-depGraph1 : GraphDataD $ TensorD [1,2,3,1]
-depGraph1 = MulD depTs1 MkTensorD
+depGraph1 : GraphDataD $ TensorD [1,2,3]
+depGraph1 = MulD tensor1 MkTensorD
 
 FreeGraphD : Type->Type --type of computation graph ,freer graph
 FreeGraphD a = Freer GraphDataD a
@@ -94,16 +93,24 @@ FreeGraphD a = Freer GraphDataD a
 implicit liftd : GraphDataD a -> Freer GraphDataD a
 liftd = liftF
 
-depGraph2 : FreeGraphD $ (TensorD [1],TensorD [2])
+depGraph2 : FreeGraphD $ (TensorD [1],TensorD [1])
 depGraph2 = do
-  in1<-liftF $ PlaceholderD [1]
-  out1<-liftF $ PlaceholderD [2]
-  out2<-PlaceholderD [2] -- using implicits
+  in1<-liftF $ InD [1]
+  out1<-liftF $ InD [1]
+  out2<-InD [2] -- using implicits
   pure (in1,out1)
 
 compGraphD : FreeGraphD $ TensorD [1]
 compGraphD = do
   (in1,out1)<-depGraph2
-  pure in1
+  MulD in1 in1
+
+interp1 : {x : Type}-> GraphDataD x -> State String x
+interp1 (InD s) = ST (\x => Id (MkTensorD, x++" in "++ (show s)++" "))
+interp1 (OutD s) = ST (\s => Id (MkTensorD, s++" out "))
+interp1 (TrainableD s) = ST (\s => Id (MkTensorD, s++" train "))
+interp1 (MulD x y) = ST (\s => Id (MkTensorD, s++" mul "))
+interp1 (VecMulD y z) = ST (\s => Id (MkTensorD, s++" vec "))
+interp1 (MapD y f) = ST (\s => Id (MkTensorD, s++" map "))
 -- FreeGraph : Type --type of computation graph ,freer graph
 -- FreeGraph = Freer GraphData Tensor
