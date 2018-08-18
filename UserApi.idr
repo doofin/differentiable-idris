@@ -114,3 +114,4 @@ interp1 (VecMulD y z) = ST (\s => Id (MkTensorD, s++" vec "))
 interp1 (MapD y f) = ST (\s => Id (MkTensorD, s++" map "))
 -- FreeGraph : Type --type of computation graph ,freer graph
 -- FreeGraph = Freer GraphData Tensor
+
