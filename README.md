@@ -1,6 +1,8 @@
 [![Join the chat at https://gitter.im/idris-gitter/Lobby](https://badges.gitter.im/idris-gitter/Lobby.svg)](https://gitter.im/idris-gitter/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-# tensorflow on idris,why? (WIP!)
+# differentiable programming on idris,why? (WIP!)
+Due to the extreme flexibility of pytorch,I am going to bind to pytorch cpp instead of tensorflow
+
 Learn & Research dependent types with deep learning
 
 Elaborator reflection,maybe the most advanced macro system ,will make our great statically typed functional code terse and beautiful
